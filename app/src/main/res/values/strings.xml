@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NikeShop</string>
+    <string name="home">خانه</string>
+    <string name="cart">سبد خرید</string>
+    <string name="profile">پروفایل</string>
+
 </resources>
