@@ -2,7 +2,7 @@
 <resources>
     <item name="black" type="color">#262A35</item>
     <item name="blue" type="color">#217cf3</item>
-    <item name="darkGray" type="color">#efefe</item>
+    <item name="darkGray" type="color">#454545</item>
     <item name="gray" type="color">#b3b6be</item>
     <item name="white" type="color">#FFFFFFFF</item>
 

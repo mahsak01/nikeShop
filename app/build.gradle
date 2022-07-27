@@ -12,6 +12,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -75,6 +76,12 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.0"
     implementation "androidx.navigation:navigation-runtime-ktx:2.5.0"
     implementation "androidx.navigation:navigation-ui-ktx:2.5.0"
+
+
+    //viewpager slider
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation "com.facebook.fresco:fresco:1.11.0"
+
 
 
 }

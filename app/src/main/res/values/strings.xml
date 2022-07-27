@@ -3,5 +3,6 @@
     <string name="home">خانه</string>
     <string name="cart">سبد خرید</string>
     <string name="profile">پروفایل</string>
+    <string name="search">جستجو</string>
 
 </resources>
