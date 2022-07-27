@@ -26,5 +26,8 @@ class MainFragment: NikeFragment() {
         mainViewModel.productLiveData.observe(viewLifecycleOwner){
           Timber.i(it.toString())
         }
+        mainViewModel.progressLiveData.observe(viewLifecycleOwner){
+            setProgressIndicator(it)
+        }
     }
 }
