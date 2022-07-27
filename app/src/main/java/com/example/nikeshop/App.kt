@@ -24,7 +24,7 @@ class App : Application() {
             single<ApiService> { createApiServiceInstance() }
             factory<ProductRepository> {
                 ProductRepositoryImplement(
-                    ProductRemoteDataSource(),
+                    ProductRemoteDataSource(get()),
                     ProductLocalDataSource()
                 )
             }
