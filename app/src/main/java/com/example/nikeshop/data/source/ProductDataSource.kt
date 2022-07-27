@@ -1,6 +1,6 @@
 package com.example.nikeshop.data.source
 
-import com.example.nikeshop.data.Product
+import com.example.nikeshop.data.model.Product
 import io.reactivex.Completable
 import io.reactivex.Single
 

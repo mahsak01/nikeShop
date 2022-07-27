@@ -1,9 +1,12 @@
 package com.example.nikeshop.features.main
 
 import androidx.lifecycle.MutableLiveData
+import com.example.nikeshop.common.NikeSingleObserver
 import com.example.nikeshop.common.NikeViewModel
-import com.example.nikeshop.data.Product
+import com.example.nikeshop.data.Repository.BannerRepository
+import com.example.nikeshop.data.model.Product
 import com.example.nikeshop.data.Repository.ProductRepository
+import com.example.nikeshop.data.model.Banner
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -11,9 +14,10 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 
-class MainViewModel(val productRepository: ProductRepository) :NikeViewModel() {
+class MainViewModel( productRepository: ProductRepository ,  bannerRepository: BannerRepository) :NikeViewModel() {
 
     val productLiveData= MutableLiveData<List<Product>>()
+    val bannerLiveData= MutableLiveData<List<Banner>>()
 
     init {
         progressLiveData.value=true
@@ -21,20 +25,24 @@ class MainViewModel(val productRepository: ProductRepository) :NikeViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doFinally{progressLiveData.value=false}
-            .subscribe(object :SingleObserver<List<Product>>{
-                override fun onSubscribe(d: Disposable) {
-                    compositeDisposable.add(d)
-                }
-
+            .subscribe(object :NikeSingleObserver<List<Product>>(compositeDisposable){
                 override fun onSuccess(t: List<Product>) {
                       productLiveData.value=t
                 }
+            })
 
-                override fun onError(e: Throwable) {
-                     Timber.e(e)
+        bannerRepository.getBanners()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object :NikeSingleObserver<List<Banner>>(compositeDisposable){
+
+                override fun onSuccess(t: List<Banner>) {
+                    bannerLiveData.value=t
                 }
 
+
             })
+
     }
 
 }

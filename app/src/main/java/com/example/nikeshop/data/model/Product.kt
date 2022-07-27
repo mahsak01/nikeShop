@@ -1,4 +1,4 @@
-package com.example.nikeshop.data
+package com.example.nikeshop.data.model
 
 data class Product(
     val discount: Int,

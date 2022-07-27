@@ -1,6 +1,6 @@
 package com.example.nikeshop.data.source.remote
 
-import com.example.nikeshop.data.Product
+import com.example.nikeshop.data.model.Product
 import com.example.nikeshop.data.source.ProductDataSource
 import com.example.nikeshop.service.http.ApiService
 import io.reactivex.Completable

@@ -1,11 +1,10 @@
 package com.example.nikeshop.service.http
 
-import com.example.nikeshop.data.Product
+import com.example.nikeshop.data.model.Banner
+import com.example.nikeshop.data.model.Product
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
@@ -13,6 +12,9 @@ interface ApiService {
 
     @GET("product/list")
     fun getProducts(): Single<List<Product>>
+
+    @GET("banner/slider")
+    fun getBanners(): Single<List<Banner>>
 }
 
 fun createApiServiceInstance():ApiService{
