@@ -6,24 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".features.main.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="سلام دنیا"
-        android:textAppearance="?textAppearanceHeadline6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-   <androidx.fragment.app.FragmentContainerView
-       android:id="@+id/fragmentContainer"
-       android:name="com.example.nikeshop.features.main.MainFragment"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"
+        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
+        android:id="@+id/bottomNavigation"
         android:layout_height="56dp"
         android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
