@@ -9,6 +9,7 @@ import com.example.nikeshop.data.source.local.ProductLocalDataSource
 import com.example.nikeshop.data.source.remote.BannerRemoteDataSource
 import com.example.nikeshop.data.source.remote.ProductRemoteDataSource
 import com.example.nikeshop.features.main.MainViewModel
+import com.example.nikeshop.features.main.ProductListAdapter
 import com.example.nikeshop.service.http.ApiService
 import com.example.nikeshop.service.http.FrescoLoadingServiceImplement
 import com.example.nikeshop.service.http.ImageLoadingService
@@ -38,6 +39,7 @@ class App : Application() {
                     ProductLocalDataSource()
                 )
             }
+            factory { ProductListAdapter(get()) }
             factory<BannerRepository> {
                 BannerRepositoryImplement(BannerRemoteDataSource(get()))
             }

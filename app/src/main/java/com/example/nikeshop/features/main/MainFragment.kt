@@ -5,15 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.nikeshop.R
 import com.example.nikeshop.common.NikeFragment
+import com.example.nikeshop.data.model.Product
 import com.sevenlearn.nikestore.common.convertDpToPixel
 import kotlinx.android.synthetic.main.fragment_main.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class MainFragment: NikeFragment() {
     val mainViewModel:MainViewModel by viewModel()
+    val productListAdapter:ProductListAdapter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,9 +30,20 @@ class MainFragment: NikeFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.productLiveData.observe(viewLifecycleOwner){
+
+        latestProducts.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+        latestProducts.adapter=productListAdapter
+
+        mainViewModel.latestProductLiveData.observe(viewLifecycleOwner){
           Timber.i(it.toString())
+            productListAdapter.productList=it as ArrayList<Product>
         }
+
+//        mainViewModel.popularProductLiveData.observe(viewLifecycleOwner){
+//            Timber.i(it.toString())
+//            productListAdapter.productList=it as ArrayList<Product>
+//        }
+
         mainViewModel.progressLiveData.observe(viewLifecycleOwner){
             setProgressIndicator(it)
         }
