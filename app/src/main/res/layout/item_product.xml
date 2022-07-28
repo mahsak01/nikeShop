@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="176dp"
+    android:layout_height="wrap_content"
+    android:paddingBottom="12dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp">
+
+    <com.example.nikeshop.view.NikeImageView
+        android:id="@+id/productImageView"
+        android:layout_width="0dp"
+        android:layout_height="189dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/productTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        tools:text="TextView"
+        android:maxLines="2"
+        android:minLines="2"
+        android:ellipsize="end"
+        android:textAppearance="?textAppearanceBody1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/productImageView"
+        app:layout_constraintTop_toBottomOf="@+id/productImageView" />
+
+    <TextView
+        android:id="@+id/previousPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?textAppearanceBody2"
+        android:textColor="?android:textColorSecondary"
+        tools:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/productTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/productTitleTextView" />
+
+    <TextView
+        android:id="@+id/currentPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?textAppearanceBody1"
+        tools:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/previousPriceTextView"
+        app:layout_constraintTop_toBottomOf="@+id/previousPriceTextView" />
+
+    <ImageView
+        android:id="@+id/favoriteButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/background_favorite"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/ic_favorites_20dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

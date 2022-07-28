@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layoutDirection="rtl">
 
     <androidx.core.widget.NestedScrollView
@@ -17,25 +18,79 @@
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_nike_logo"></ImageView>
+                android:src="@drawable/ic_nike_logo" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:textColor="?colorOnSurface"
-                android:background="@drawable/background_edit_text_search"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="10dp"
-                android:textSize="15sp"
-                android:textColorHint="?android:textColorSecondary"
-                android:hint="@string/search"
                 android:gravity="start|center"
+                android:hint="@string/search"
                 android:paddingStart="15dp"
-                android:paddingEnd="15dp">
+                android:background="@drawable/background_edit_text_search"
+                android:paddingEnd="15dp"
+                android:textColor="?colorOnSurface"
+                android:textColorHint="?android:textColorSecondary"
+                android:textSize="15sp" />
 
-            </EditText>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/bannerSliderViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    />
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dots_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="bottom|center_horizontal"
+                    app:dotsColor="@color/gray"
+                    android:layout_marginBottom="12dp"
+                    app:dotsCornerRadius="8dp"
+                    app:dotsSize="7dp"
+                    app:dotsSpacing="3dp"
+                    app:dotsWidthFactor="4"
+                    app:selectedDotColor="@color/darkGray"
+                    app:progressMode="false"
+                    />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/latest"
+                    android:layout_gravity="center_vertical|start"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textColor="?android:textColorSecondary"/>
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:text="@string/viewAll"
+                    android:layout_gravity="center_vertical|end"/>
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/latestProducts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:clipToPadding="false" />
+
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
