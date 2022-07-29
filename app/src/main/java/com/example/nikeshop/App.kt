@@ -1,15 +1,20 @@
 package com.example.nikeshop
 
 import android.app.Application
+import android.os.Bundle
 import com.example.nikeshop.data.Repository.BannerRepository
+import com.example.nikeshop.data.Repository.CommentRepository
 import com.example.nikeshop.data.Repository.ProductRepository
 import com.example.nikeshop.data.implement.BannerRepositoryImplement
+import com.example.nikeshop.data.implement.CommentRepositoryImplement
 import com.example.nikeshop.data.implement.ProductRepositoryImplement
 import com.example.nikeshop.data.source.local.ProductLocalDataSource
 import com.example.nikeshop.data.source.remote.BannerRemoteDataSource
+import com.example.nikeshop.data.source.remote.CommentRemoteDataSource
 import com.example.nikeshop.data.source.remote.ProductRemoteDataSource
 import com.example.nikeshop.features.main.MainViewModel
 import com.example.nikeshop.features.main.ProductListAdapter
+import com.example.nikeshop.features.product.ProductDetailViewModel
 import com.example.nikeshop.service.http.ApiService
 import com.example.nikeshop.service.http.FrescoLoadingServiceImplement
 import com.example.nikeshop.service.http.ImageLoadingService
@@ -43,7 +48,11 @@ class App : Application() {
             factory<BannerRepository> {
                 BannerRepositoryImplement(BannerRemoteDataSource(get()))
             }
+
+            factory<CommentRepository> { CommentRepositoryImplement(CommentRemoteDataSource(get())) }
             viewModel { MainViewModel(get(), get()) }
+            viewModel { (bundle: Bundle)->ProductDetailViewModel(bundle,get()) }
+
         }
 
         startKoin {

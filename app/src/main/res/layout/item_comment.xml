@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="@drawable/background_comment"
+    android:padding="16dp"
+    tools:ignore="MissingDefaultResource">
+
+    <TextView
+        android:id="@+id/commentTileTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textAppearance="?textAppearanceBody1"
+        tools:text="@string/commentTile"
+        app:layout_constraintEnd_toStartOf="@+id/commentDateTitleView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/commentDateTitleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?textAppearanceBody2"
+        android:textColor="?android:textColorSecondary"
+        app:layout_constraintBottom_toBottomOf="@+id/commentTileTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/commentDate" />
+
+    <TextView
+        android:id="@+id/commentAuthorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?textAppearanceBody2"
+        android:textColor="?android:textColorSecondary"
+        android:layout_marginTop="4dp"
+        tools:text="@string/commentAuthor"
+        app:layout_constraintStart_toStartOf="@+id/commentTileTextView"
+        app:layout_constraintTop_toBottomOf="@+id/commentTileTextView" />
+
+    <TextView
+        android:id="@+id/commentContentTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?textAppearanceBody2"
+        android:layout_marginTop="12dp"
+        android:gravity="right"
+        tools:text="واقعا یکی از بهترین کفش هاییه که تا حالا دیدم خیلی خوبه"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentAuthorTextView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

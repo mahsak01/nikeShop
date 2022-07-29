@@ -90,33 +90,33 @@
                 android:paddingEnd="12dp"
                 android:clipToPadding="false" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/popular"
-                    android:layout_gravity="center_vertical|start"
-                    android:textAppearance="?textAppearanceHeadline6"
-                    android:textColor="?android:textColorSecondary"/>
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:text="@string/viewAll"
-                    android:layout_gravity="center_vertical|end"/>
-            </FrameLayout>
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingStart="16dp"-->
+<!--                android:paddingEnd="16dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/popular"-->
+<!--                    android:layout_gravity="center_vertical|start"-->
+<!--                    android:textAppearance="?textAppearanceHeadline6"-->
+<!--                    android:textColor="?android:textColorSecondary"/>-->
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    style="@style/Widget.MaterialComponents.Button.TextButton"-->
+<!--                    android:text="@string/viewAll"-->
+<!--                    android:layout_gravity="center_vertical|end"/>-->
+<!--            </FrameLayout>-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/popularProducts"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:clipToPadding="false" />
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/popularProducts"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingStart="12dp"-->
+<!--                android:paddingEnd="12dp"-->
+<!--                android:clipToPadding="false" />-->
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

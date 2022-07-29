@@ -1,6 +1,8 @@
 package com.example.nikeshop.common
 
 import android.content.Context
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +29,8 @@ abstract class NikeActivity : NikeView, AppCompatActivity() {
 
     override val viewContext: Context?
         get() = this
+
+
 }
 
 interface NikeView {

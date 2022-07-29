@@ -1,5 +1,9 @@
 package com.example.nikeshop.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Product(
     val discount: Int,
     val id: Int,
@@ -8,4 +12,4 @@ data class Product(
     val price: Int,
     val status: Int,
     val title: String
-)
+):Parcelable

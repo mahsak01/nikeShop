@@ -16,6 +16,8 @@ import com.sevenlearn.nikestore.common.implementSpringAnimationTrait
 class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
     RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 
+    var productOnClickListener:ProductOnClickListener?=null
+
     var productList=ArrayList<Product>()
     set(value) {
         field=value
@@ -37,7 +39,7 @@ class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
             previousPriceTextView.paintFlags= Paint.STRIKE_THRU_TEXT_FLAG
             itemView.implementSpringAnimationTrait()
             itemView.setOnClickListener{
-
+                productOnClickListener?.onProductClick(product)
             }
         }
     }
@@ -50,4 +52,8 @@ class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindProduct(productList[position])
-}
+
+    interface ProductOnClickListener{
+        fun onProductClick(product: Product)
+    }
+    }
