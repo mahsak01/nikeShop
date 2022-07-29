@@ -9,6 +9,7 @@ import com.example.nikeshop.common.NikeViewModel
 import com.example.nikeshop.data.Repository.CommentRepository
 import com.example.nikeshop.data.model.Comment
 import com.example.nikeshop.data.model.Product
+import com.sevenlearn.nikestore.common.asyncNetworkRequest
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -23,8 +24,7 @@ class ProductDetailViewModel(
     init {
         productLiveData.value = bundle.getParcelable(EXTRA_KEY_DATA)
         commentRepository.getAll(productLiveData.value!!.id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .asyncNetworkRequest()
             .subscribe(object : NikeSingleObserver<List<Comment>>(compositeDisposable) {
                 override fun onSuccess(t: List<Comment>) {
                     commentsLiveData.value = t

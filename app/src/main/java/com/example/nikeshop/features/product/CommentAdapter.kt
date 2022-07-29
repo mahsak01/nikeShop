@@ -7,12 +7,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nikeshop.R
 import com.example.nikeshop.data.model.Comment
+import com.example.nikeshop.data.model.Product
+import com.example.nikeshop.features.main.ProductListAdapter
 import java.util.ArrayList
 
-class CommentAdapter():RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
+class CommentAdapter(val showAll:Boolean=false):RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
 
     var comments=ArrayList<Comment>()
-    set(value) {
+
+        set(value) {
         field=value
         notifyDataSetChanged()
     }
@@ -39,5 +42,7 @@ class CommentAdapter():RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
         holder.bindComment(comments[position])
     }
 
-    override fun getItemCount(): Int = if (comments.size>3) 3 else comments.size
+    override fun getItemCount(): Int = if (comments.size>3 && !showAll) 3 else comments.size
+
+
 }

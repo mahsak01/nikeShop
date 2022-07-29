@@ -1,5 +1,6 @@
 package com.example.nikeshop.features.product
 
+import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +9,10 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nikeshop.R
+import com.example.nikeshop.common.EXTRA_KEY_DATA
+import com.example.nikeshop.common.EXTRA_KEY_ID
 import com.example.nikeshop.data.model.Comment
+import com.example.nikeshop.features.product.comment.CommentListActivity
 import com.example.nikeshop.service.http.ImageLoadingService
 import com.example.nikeshop.view.scroll.ObservableScrollView
 import com.example.nikeshop.view.scroll.ObservableScrollViewCallbacks
@@ -26,6 +30,7 @@ class ProductDetailActivity : AppCompatActivity() {
     val productDetailViewModel: ProductDetailViewModel by viewModel { parametersOf(intent.extras) }
     val imageLoadingService: ImageLoadingService by inject()
     val commentAdapter=CommentAdapter()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +57,12 @@ class ProductDetailActivity : AppCompatActivity() {
             commentAdapter.comments= it as ArrayList<Comment>
             if (it.size>3)
                 viewAllCommentsButtons.visibility= View.VISIBLE
+        }
+
+        viewAllCommentsButtons.setOnClickListener{
+            startActivity(Intent(this,CommentListActivity::class.java).apply {
+                putExtra(EXTRA_KEY_ID, productDetailViewModel.productLiveData.value!!.id)
+            })
         }
 
 

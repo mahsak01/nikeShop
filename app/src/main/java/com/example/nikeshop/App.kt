@@ -15,6 +15,7 @@ import com.example.nikeshop.data.source.remote.ProductRemoteDataSource
 import com.example.nikeshop.features.main.MainViewModel
 import com.example.nikeshop.features.main.ProductListAdapter
 import com.example.nikeshop.features.product.ProductDetailViewModel
+import com.example.nikeshop.features.product.comment.CommentListViewModel
 import com.example.nikeshop.service.http.ApiService
 import com.example.nikeshop.service.http.FrescoLoadingServiceImplement
 import com.example.nikeshop.service.http.ImageLoadingService
@@ -52,6 +53,8 @@ class App : Application() {
             factory<CommentRepository> { CommentRepositoryImplement(CommentRemoteDataSource(get())) }
             viewModel { MainViewModel(get(), get()) }
             viewModel { (bundle: Bundle)->ProductDetailViewModel(bundle,get()) }
+            viewModel { (productId: Int)->CommentListViewModel(productId,get()) }
+
 
         }
 
