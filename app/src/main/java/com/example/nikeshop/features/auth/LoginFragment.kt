@@ -44,7 +44,7 @@ class LoginFragment:NikeFragment() {
         signUpLinkButton.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().apply {
                 replace(R.id.fragmentContainer,SignupFragment())
-            }
+            }.commit()
         }
     }
 
