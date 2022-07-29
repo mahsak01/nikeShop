@@ -1,8 +1,8 @@
 package com.example.nikeshop.features.list
 
+import NikeSingleObserver
 import androidx.lifecycle.MutableLiveData
 import com.example.nikeshop.R
-import com.example.nikeshop.common.NikeSingleObserver
 import com.example.nikeshop.common.NikeViewModel
 import com.example.nikeshop.data.Repository.ProductRepository
 import com.example.nikeshop.data.model.Product

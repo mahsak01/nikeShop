@@ -1,10 +1,10 @@
 package com.example.nikeshop.features.product
 
+import NikeSingleObserver
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.nikeshop.common.EXTRA_KEY_DATA
-import com.example.nikeshop.common.NikeSingleObserver
 import com.example.nikeshop.common.NikeViewModel
 import com.example.nikeshop.data.Repository.CartRepository
 import com.example.nikeshop.data.Repository.CommentRepository
@@ -35,6 +35,7 @@ class ProductDetailViewModel(
 
             })
     }
+
 
     fun onAddToCartButton():Completable= cartRepository.addToCart(productLiveData.value!!.id).ignoreElement()
 }

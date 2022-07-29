@@ -1,7 +1,7 @@
 package com.example.nikeshop.features.product.comment
 
+import NikeSingleObserver
 import androidx.lifecycle.MutableLiveData
-import com.example.nikeshop.common.NikeSingleObserver
 import com.example.nikeshop.common.NikeViewModel
 import com.example.nikeshop.data.Repository.CommentRepository
 import com.example.nikeshop.data.model.Comment

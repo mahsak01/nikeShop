@@ -21,6 +21,15 @@
     <string name="sortPriceHighToLow">گران ترین</string>
     <string name="sortPriceLowToHigh">ارزان ترین</string>
     <string name="addToCart">افزودن به سبد خرید</string>
+    <string name="unknownError">خطای نامشخص</string>
+    <string name="successAddToCart">به سبد خرید اضافه شد</string>
+    <string name="LoginScreenTitle">ورود به حساب کاربری</string>
+    <string name="loginHint">ایمیل و رمز خود را وارد کنید</string>
+    <string name="email">ایمیل</string>
+    <string name="password">رمز عبور</string>
+    <string name="loginTitle">ورود</string>
+    <string name="notAccount">حساب کاربردی ندارید؟</string>
+    <string name="signUp">ثبت نام</string>
 
     <string-array name="sortArray">
         <item>@string/sortLatest</item>

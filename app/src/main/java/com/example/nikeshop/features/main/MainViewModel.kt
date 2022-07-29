@@ -1,7 +1,7 @@
 package com.example.nikeshop.features.main
 
+import NikeSingleObserver
 import androidx.lifecycle.MutableLiveData
-import com.example.nikeshop.common.NikeSingleObserver
 import com.example.nikeshop.common.NikeViewModel
 import com.example.nikeshop.common.SORT_LATEST
 import com.example.nikeshop.common.SORT_POPULAR
