@@ -3,13 +3,16 @@ package com.example.nikeshop
 import android.app.Application
 import android.os.Bundle
 import com.example.nikeshop.data.Repository.BannerRepository
+import com.example.nikeshop.data.Repository.CartRepository
 import com.example.nikeshop.data.Repository.CommentRepository
 import com.example.nikeshop.data.Repository.ProductRepository
 import com.example.nikeshop.data.implement.BannerRepositoryImplement
+import com.example.nikeshop.data.implement.CartRepositoryImplement
 import com.example.nikeshop.data.implement.CommentRepositoryImplement
 import com.example.nikeshop.data.implement.ProductRepositoryImplement
 import com.example.nikeshop.data.source.local.ProductLocalDataSource
 import com.example.nikeshop.data.source.remote.BannerRemoteDataSource
+import com.example.nikeshop.data.source.remote.CartRemoteDataSource
 import com.example.nikeshop.data.source.remote.CommentRemoteDataSource
 import com.example.nikeshop.data.source.remote.ProductRemoteDataSource
 import com.example.nikeshop.features.list.ProductListViewModel
@@ -22,6 +25,7 @@ import com.example.nikeshop.service.http.FrescoLoadingServiceImplement
 import com.example.nikeshop.service.http.ImageLoadingService
 import com.example.nikeshop.service.http.createApiServiceInstance
 import com.facebook.drawee.backends.pipeline.Fresco
+import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -51,9 +55,10 @@ class App : Application() {
                 BannerRepositoryImplement(BannerRemoteDataSource(get()))
             }
 
+            factory<CartRepository> { CartRepositoryImplement(CartRemoteDataSource(get())) }
             factory<CommentRepository> { CommentRepositoryImplement(CommentRemoteDataSource(get())) }
             viewModel { MainViewModel(get(), get()) }
-            viewModel { (bundle: Bundle)->ProductDetailViewModel(bundle,get()) }
+            viewModel { (bundle: Bundle)->ProductDetailViewModel(bundle,get(),get()) }
             viewModel { (productId: Int)->CommentListViewModel(productId,get()) }
             viewModel { (sort:Int)-> ProductListViewModel(sort,get()) }
 

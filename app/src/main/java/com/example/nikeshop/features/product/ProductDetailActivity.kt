@@ -5,6 +5,7 @@ import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +13,20 @@ import com.example.nikeshop.R
 import com.example.nikeshop.common.EXTRA_KEY_DATA
 import com.example.nikeshop.common.EXTRA_KEY_ID
 import com.example.nikeshop.common.NikeActivity
+import com.example.nikeshop.common.NikeCompletableObserver
 import com.example.nikeshop.data.model.Comment
 import com.example.nikeshop.features.product.comment.CommentListActivity
 import com.example.nikeshop.service.http.ImageLoadingService
 import com.example.nikeshop.view.scroll.ObservableScrollView
 import com.example.nikeshop.view.scroll.ObservableScrollViewCallbacks
 import com.example.nikeshop.view.scroll.ScrollState
+import com.google.android.material.snackbar.Snackbar
 import com.sevenlearn.nikestore.common.formatPrice
+import io.reactivex.Completable
+import io.reactivex.CompletableObserver
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
@@ -32,6 +40,7 @@ class ProductDetailActivity : NikeActivity() {
         intent.extras) }
     val imageLoadingService: ImageLoadingService by inject()
     val commentAdapter=CommentAdapter()
+    val compositeDisposable=CompositeDisposable()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +80,18 @@ class ProductDetailActivity : NikeActivity() {
             finish()
         }
 
+
+addToCartButton.setOnClickListener {
+ productDetailViewModel.onAddToCartButton()
+     .subscribeOn(Schedulers.io())
+     .observeOn(AndroidSchedulers.mainThread())
+     .subscribe(object : NikeCompletableObserver(compositeDisposable){
+         override fun onComplete() {
+             Snackbar.make(rootView as CoordinatorLayout,"به سبد خرید اضافه شد",Snackbar.LENGTH_SHORT).show()
+         }
+
+     })
+}
 
 
 
