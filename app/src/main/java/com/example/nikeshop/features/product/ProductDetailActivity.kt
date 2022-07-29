@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nikeshop.R
 import com.example.nikeshop.common.EXTRA_KEY_DATA
 import com.example.nikeshop.common.EXTRA_KEY_ID
+import com.example.nikeshop.common.NikeActivity
 import com.example.nikeshop.data.model.Comment
 import com.example.nikeshop.features.product.comment.CommentListActivity
 import com.example.nikeshop.service.http.ImageLoadingService
@@ -25,9 +26,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.util.ArrayList
 
-class ProductDetailActivity : AppCompatActivity() {
+class ProductDetailActivity : NikeActivity() {
 
-    val productDetailViewModel: ProductDetailViewModel by viewModel { parametersOf(intent.extras) }
+    val productDetailViewModel: ProductDetailViewModel by viewModel { parametersOf(
+        intent.extras) }
     val imageLoadingService: ImageLoadingService by inject()
     val commentAdapter=CommentAdapter()
 
@@ -63,6 +65,10 @@ class ProductDetailActivity : AppCompatActivity() {
             startActivity(Intent(this,CommentListActivity::class.java).apply {
                 putExtra(EXTRA_KEY_ID, productDetailViewModel.productLiveData.value!!.id)
             })
+        }
+
+        backButton.setOnClickListener {
+            finish()
         }
 
 

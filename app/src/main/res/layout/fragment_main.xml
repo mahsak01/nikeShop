@@ -75,6 +75,7 @@
                     android:textAppearance="?textAppearanceHeadline6"
                     android:textColor="?android:textColorSecondary"/>
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/viewAllLatestProductButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.Button.TextButton"

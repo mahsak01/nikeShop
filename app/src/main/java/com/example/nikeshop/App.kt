@@ -12,6 +12,7 @@ import com.example.nikeshop.data.source.local.ProductLocalDataSource
 import com.example.nikeshop.data.source.remote.BannerRemoteDataSource
 import com.example.nikeshop.data.source.remote.CommentRemoteDataSource
 import com.example.nikeshop.data.source.remote.ProductRemoteDataSource
+import com.example.nikeshop.features.list.ProductListViewModel
 import com.example.nikeshop.features.main.MainViewModel
 import com.example.nikeshop.features.main.ProductListAdapter
 import com.example.nikeshop.features.product.ProductDetailViewModel
@@ -45,7 +46,7 @@ class App : Application() {
                     ProductLocalDataSource()
                 )
             }
-            factory { ProductListAdapter(get()) }
+            factory {(viewType:Int)-> ProductListAdapter(viewType,get()) }
             factory<BannerRepository> {
                 BannerRepositoryImplement(BannerRemoteDataSource(get()))
             }
@@ -54,6 +55,7 @@ class App : Application() {
             viewModel { MainViewModel(get(), get()) }
             viewModel { (bundle: Bundle)->ProductDetailViewModel(bundle,get()) }
             viewModel { (productId: Int)->CommentListViewModel(productId,get()) }
+            viewModel { (sort:Int)-> ProductListViewModel(sort,get()) }
 
 
         }
