@@ -16,7 +16,7 @@ class AuthViewModel(val userRepository: UserRepository) : NikeViewModel() {
     fun signup(email: String, password: String): Completable {
         progressLiveData.value = true
         return userRepository.signUp(email,password).doFinally{
-            progressLiveData.value = false
+            progressLiveData.postValue(false)
 
         }
     }

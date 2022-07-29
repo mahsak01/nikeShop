@@ -7,6 +7,7 @@ import com.sevenlearn.nikestore.data.MessageResponse
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import org.json.JSONObject
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
@@ -33,6 +34,9 @@ interface ApiService {
 
     @POST("user/register")
     fun signUp(@Body jsonObject: JsonObject):Single<MessageResponse>
+
+    @POST("auth/token")
+    fun refreshToken(@Body jsonObject: JsonObject):Call<TokenResponse>
 
 }
 

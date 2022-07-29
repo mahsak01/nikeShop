@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import com.example.nikeshop.data.Repository.*
 import com.example.nikeshop.data.implement.*
+import com.example.nikeshop.data.source.UserDataSource
 import com.example.nikeshop.data.source.local.ProductLocalDataSource
 import com.example.nikeshop.data.source.local.UserLocalDataSource
 import com.example.nikeshop.data.source.remote.*
@@ -55,6 +56,7 @@ class App : Application() {
                     MODE_PRIVATE
                 )
             }
+            single <UserDataSource>{UserLocalDataSource(get())}
             single<UserRepository> {
                 UserRepositoryImplement(UserLocalDataSource(get()), UserRemoteDataSource(get()))
             }

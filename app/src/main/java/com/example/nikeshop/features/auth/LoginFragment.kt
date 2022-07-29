@@ -1,5 +1,7 @@
 package com.example.nikeshop.features.auth
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +9,7 @@ import android.view.ViewGroup
 import com.example.nikeshop.R
 import com.example.nikeshop.common.NikeCompletableObserver
 import com.example.nikeshop.common.NikeFragment
+import com.example.nikeshop.features.product.ProductDetailActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -36,6 +39,12 @@ class LoginFragment:NikeFragment() {
                     }
 
                 })
+        }
+
+        signUpLinkButton.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainer,SignupFragment())
+            }
         }
     }
 
