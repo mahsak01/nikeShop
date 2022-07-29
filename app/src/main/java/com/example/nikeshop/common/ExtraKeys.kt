@@ -11,3 +11,7 @@ const val SORT_PRICE_ASC=3
 const val VIEW_TYPE_ROUND = 0
 const val VIEW_TYPE_SMALL = 1
 const val VIEW_TYPE_LARGE = 2
+
+
+const val CLIENT_ID=2
+const val CLIENT_SECRET="kyj1c9sVcksqGU4scMX7nLDalkjp2WoqQEf8PKAC"

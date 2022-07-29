@@ -1,20 +1,14 @@
 package com.example.nikeshop
 
 import android.app.Application
+import android.content.SharedPreferences
 import android.os.Bundle
-import com.example.nikeshop.data.Repository.BannerRepository
-import com.example.nikeshop.data.Repository.CartRepository
-import com.example.nikeshop.data.Repository.CommentRepository
-import com.example.nikeshop.data.Repository.ProductRepository
-import com.example.nikeshop.data.implement.BannerRepositoryImplement
-import com.example.nikeshop.data.implement.CartRepositoryImplement
-import com.example.nikeshop.data.implement.CommentRepositoryImplement
-import com.example.nikeshop.data.implement.ProductRepositoryImplement
+import com.example.nikeshop.data.Repository.*
+import com.example.nikeshop.data.implement.*
 import com.example.nikeshop.data.source.local.ProductLocalDataSource
-import com.example.nikeshop.data.source.remote.BannerRemoteDataSource
-import com.example.nikeshop.data.source.remote.CartRemoteDataSource
-import com.example.nikeshop.data.source.remote.CommentRemoteDataSource
-import com.example.nikeshop.data.source.remote.ProductRemoteDataSource
+import com.example.nikeshop.data.source.local.UserLocalDataSource
+import com.example.nikeshop.data.source.remote.*
+import com.example.nikeshop.features.auth.AuthViewModel
 import com.example.nikeshop.features.list.ProductListViewModel
 import com.example.nikeshop.features.main.MainViewModel
 import com.example.nikeshop.features.main.ProductListAdapter
@@ -25,6 +19,7 @@ import com.example.nikeshop.service.http.FrescoLoadingServiceImplement
 import com.example.nikeshop.service.http.ImageLoadingService
 import com.example.nikeshop.service.http.createApiServiceInstance
 import com.facebook.drawee.backends.pipeline.Fresco
+import io.reactivex.Single
 import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -50,17 +45,27 @@ class App : Application() {
                     ProductLocalDataSource()
                 )
             }
-            factory {(viewType:Int)-> ProductListAdapter(viewType,get()) }
+            factory { (viewType: Int) -> ProductListAdapter(viewType, get()) }
             factory<BannerRepository> {
                 BannerRepositoryImplement(BannerRemoteDataSource(get()))
             }
-
+            single<SharedPreferences> {
+                this@App.getSharedPreferences(
+                    "app_setting",
+                    MODE_PRIVATE
+                )
+            }
+            single<UserRepository> {
+                UserRepositoryImplement(UserLocalDataSource(get()), UserRemoteDataSource(get()))
+            }
             factory<CartRepository> { CartRepositoryImplement(CartRemoteDataSource(get())) }
             factory<CommentRepository> { CommentRepositoryImplement(CommentRemoteDataSource(get())) }
+
             viewModel { MainViewModel(get(), get()) }
-            viewModel { (bundle: Bundle)->ProductDetailViewModel(bundle,get(),get()) }
-            viewModel { (productId: Int)->CommentListViewModel(productId,get()) }
-            viewModel { (sort:Int)-> ProductListViewModel(sort,get()) }
+            viewModel { (bundle: Bundle) -> ProductDetailViewModel(bundle, get(), get()) }
+            viewModel { (productId: Int) -> CommentListViewModel(productId, get()) }
+            viewModel { (sort: Int) -> ProductListViewModel(sort, get()) }
+            viewModel { AuthViewModel(get()) }
 
 
         }
@@ -69,5 +74,8 @@ class App : Application() {
             androidContext(this@App)
             modules(myModules)
         }
+
+        val userRepository:UserRepository=get()
+        userRepository.loadToken()
     }
 }

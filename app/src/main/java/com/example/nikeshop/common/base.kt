@@ -39,7 +39,17 @@ abstract class NikeFragment : Fragment(), NikeView {
 
 abstract class NikeActivity : AppCompatActivity(), NikeView {
     override val rootView: CoordinatorLayout?
-        get() = window.decorView.rootView as CoordinatorLayout?
+        get() {
+            val viewGroup = window.decorView.findViewById(android.R.id.content) as ViewGroup
+            if (viewGroup !is CoordinatorLayout) {
+                viewGroup.children.forEach {
+                    if (it is CoordinatorLayout)
+                        return it
+                }
+                throw IllegalStateException("RootView must be instance of CoordinatorLayout")
+            } else
+                return viewGroup
+        }
 
     override val viewContext: Context?
         get() = this

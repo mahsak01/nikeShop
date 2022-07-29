@@ -1,12 +1,11 @@
 package com.example.nikeshop.service.http
 
-import com.example.nikeshop.data.model.AddToCartResponse
-import com.example.nikeshop.data.model.Banner
-import com.example.nikeshop.data.model.Comment
-import com.example.nikeshop.data.model.Product
+import com.example.nikeshop.data.model.*
 import com.google.gson.JsonObject
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.sevenlearn.nikestore.data.MessageResponse
 import io.reactivex.Single
+import okhttp3.OkHttpClient
 import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,18 +27,34 @@ interface ApiService {
 
     @POST("cart/add")
     fun addToCart(@Body jsonObject: JsonObject):Single<AddToCartResponse>
-//    fun get():Single<CartRepository>
-//    fun remove(cartItemId:Int):Single<MessageResponse>
-//    fun changeCount(cartItemId:Int , count:Int):Single<AddToCartResponse>
-//    fun getCartItemsCount():Single<CartItemCount>
+
+    @POST("auth/token")
+    fun login(@Body jsonObject: JsonObject):Single<TokenResponse>
+
+    @POST("user/register")
+    fun signUp(@Body jsonObject: JsonObject):Single<MessageResponse>
+
 }
 
 fun createApiServiceInstance():ApiService{
+
+    val okHttpClient=OkHttpClient.Builder()
+        .addInterceptor{
+            val oldRequest=it.request()
+            val newRequestBuilder=oldRequest.newBuilder()
+            if (TokenContainer.token!=null)
+                newRequestBuilder.addHeader("Authorization","Bearer ${TokenContainer.token}")
+
+            newRequestBuilder.addHeader("Accept","application/json")
+            newRequestBuilder.method(oldRequest.method,oldRequest.body)
+            return@addInterceptor it.proceed(newRequestBuilder.build())
+        }.build()
 
     val retrofit=Retrofit.Builder()
         .baseUrl("http://expertdevelopers.ir/api/v1/")
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
+        .client(okHttpClient)
         .build()
 
 

@@ -30,6 +30,9 @@
     <string name="loginTitle">ورود</string>
     <string name="notAccount">حساب کاربردی ندارید؟</string>
     <string name="signUp">ثبت نام</string>
+    <string name="haveAccount">حساب کاربری دارید؟</string>
+    <string name="singupScreenTitle">ایجاد حساب کاربری</string>
+    <string name="loginAccount">ورود به حساب</string>
 
     <string-array name="sortArray">
         <item>@string/sortLatest</item>
