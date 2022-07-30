@@ -40,6 +40,9 @@
     <string name="totalPrice">مبلغ کل خرید</string>
     <string name="shippingCost">هزینه ارسال</string>
     <string name="payableCost">هزینه قابل پرداخت</string>
+    <string name="cartEmptyStateLoginRequired">وارد حساب کاربری خود شوید</string>
+    <string name="cartEmptyStateCallToAction">ورود به حساب کاربری</string>
+    <string name="cartEmptyState">هیچ خبری اینجا نیست !!</string>
 
     <string-array name="sortArray">
         <item>@string/sortLatest</item>

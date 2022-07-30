@@ -1,4 +1,5 @@
 package com.example.nikeshop.common
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -108,6 +109,22 @@ interface NikeView {
         rootView?.let {
             Snackbar.make(it, message, duration).show()
         }
+    }
+
+    fun showEmptyState(layoutResId: Int): View? {
+        rootView?.let {
+            viewContext?.let { context ->
+                var emptyState = it.findViewById<View>(layoutResId)
+                if (emptyState == null) {
+                    emptyState = LayoutInflater.from(context).inflate(layoutResId, it, false)
+                    it.addView(emptyState)
+                }
+                emptyState.visibility = View.VISIBLE
+                return emptyState
+
+            }
+        }
+        return null
     }
 }
 
