@@ -43,6 +43,11 @@
     <string name="cartEmptyStateLoginRequired">وارد حساب کاربری خود شوید</string>
     <string name="cartEmptyStateCallToAction">ورود به حساب کاربری</string>
     <string name="cartEmptyState">هیچ خبری اینجا نیست !!</string>
+    <string name="favorites">لیست علاقه مندی ها</string>
+    <string name="orderHistory">سوابق سفارش</string>
+    <string name="signIn">ورود به حساب کاربری</string>
+    <string name="signOut">خروج از حساب کاربری</string>
+    <string name="guest">کاربر مهمان</string>
 
     <string-array name="sortArray">
         <item>@string/sortLatest</item>

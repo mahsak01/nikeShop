@@ -16,6 +16,7 @@ import com.example.nikeshop.features.main.MainViewModel
 import com.example.nikeshop.features.main.ProductListAdapter
 import com.example.nikeshop.features.product.ProductDetailViewModel
 import com.example.nikeshop.features.product.comment.CommentListViewModel
+import com.example.nikeshop.features.profile.ProfileViewModel
 import com.example.nikeshop.service.http.ApiService
 import com.example.nikeshop.service.http.FrescoLoadingServiceImplement
 import com.example.nikeshop.service.http.ImageLoadingService
@@ -70,6 +71,7 @@ class App : Application() {
             viewModel { (sort: Int) -> ProductListViewModel(sort, get()) }
             viewModel { AuthViewModel(get()) }
             viewModel {CartViewModel(get())}
+            viewModel {ProfileViewModel(get())}
 
 
         }
