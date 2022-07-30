@@ -3,6 +3,7 @@ package com.example.nikeshop.features.product.comment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nikeshop.R
@@ -28,9 +29,9 @@ class CommentListActivity : NikeActivity() {
             supportActionBar?.hide();
         }
         val adapter=CommentAdapter(true)
-//        backButton.setOnClickListener {
-//            finish()
-//        }
+        findViewById<ImageView>(R.id.backButton).setOnClickListener {
+            finish()
+        }
 
         viewModel.commentsLiveData.observe(this){
             commentRecyclerView.layoutManager=LinearLayoutManager(this,RecyclerView.VERTICAL,false)

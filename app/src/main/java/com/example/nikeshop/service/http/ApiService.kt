@@ -3,6 +3,9 @@ package com.example.nikeshop.service.http
 import com.example.nikeshop.data.model.*
 import com.google.gson.JsonObject
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.sevenlearn.nikestore.data.CartItem
+import com.sevenlearn.nikestore.data.CartItemCount
+import com.sevenlearn.nikestore.data.CartResponse
 import com.sevenlearn.nikestore.data.MessageResponse
 import io.reactivex.Single
 import okhttp3.OkHttpClient
@@ -28,6 +31,18 @@ interface ApiService {
 
     @POST("cart/add")
     fun addToCart(@Body jsonObject: JsonObject):Single<AddToCartResponse>
+
+    @POST("cart/remove")
+    fun removeItemFromCart(@Body jsonObject: JsonObject):Single<MessageResponse>
+
+    @GET("cart/list")
+    fun getCart():Single<CartResponse>
+
+    @POST("cart/changeCount")
+    fun changeCount(@Body jsonObject: JsonObject):Single<AddToCartResponse>
+
+    @GET("cart/count")
+    fun getCartItemCount():Single<CartItemCount>
 
     @POST("auth/token")
     fun login(@Body jsonObject: JsonObject):Single<TokenResponse>

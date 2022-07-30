@@ -60,8 +60,8 @@ abstract class NikeActivity : AppCompatActivity(), NikeView {
     }
 
     override fun onDestroy() {
-        EventBus.getDefault().unregister(this)
         super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
 
@@ -98,6 +98,7 @@ interface NikeView {
                 NikeException.Type.AUTH -> {
                     it.startActivity(Intent(it, AuthActivity::class.java))
                     Toast.makeText(it, nikeException.serverMessage, Toast.LENGTH_SHORT).show()
+                    return
                 }
             }
         }

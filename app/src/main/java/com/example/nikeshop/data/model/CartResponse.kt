@@ -10,6 +10,3 @@ data class CartResponse(
     val total_price: Int
 )
 
-@Parcelize
-data class PurchaseDetail(var totalPrice: Int, var shipping_cost: Int, var payable_price: Int) :
-    Parcelable

@@ -10,6 +10,7 @@ import com.example.nikeshop.data.source.local.ProductLocalDataSource
 import com.example.nikeshop.data.source.local.UserLocalDataSource
 import com.example.nikeshop.data.source.remote.*
 import com.example.nikeshop.features.auth.AuthViewModel
+import com.example.nikeshop.features.cart.CartViewModel
 import com.example.nikeshop.features.list.ProductListViewModel
 import com.example.nikeshop.features.main.MainViewModel
 import com.example.nikeshop.features.main.ProductListAdapter
@@ -68,6 +69,7 @@ class App : Application() {
             viewModel { (productId: Int) -> CommentListViewModel(productId, get()) }
             viewModel { (sort: Int) -> ProductListViewModel(sort, get()) }
             viewModel { AuthViewModel(get()) }
+            viewModel {CartViewModel(get())}
 
 
         }
