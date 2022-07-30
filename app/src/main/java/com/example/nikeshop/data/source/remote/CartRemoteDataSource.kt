@@ -20,12 +20,12 @@ class CartRemoteDataSource(val apiService: ApiService) : CartDataSource {
 
     override fun remove(cartItemId: Int): Single<MessageResponse> =
         apiService.removeItemFromCart(JsonObject().apply {
-            addProperty("cat_item_id", cartItemId)
+            addProperty("cart_item_id", cartItemId)
         })
 
     override fun changeCount(cartItemId: Int, count: Int): Single<AddToCartResponse> =
         apiService.changeCount(JsonObject().apply {
-            addProperty("cat_item_id", cartItemId)
+            addProperty("cart_item_id", cartItemId)
             addProperty("count", count)
         })
 

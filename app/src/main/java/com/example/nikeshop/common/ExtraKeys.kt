@@ -15,3 +15,6 @@ const val VIEW_TYPE_LARGE = 2
 
 const val CLIENT_ID=2
 const val CLIENT_SECRET="kyj1c9sVcksqGU4scMX7nLDalkjp2WoqQEf8PKAC"
+
+const val VIEW_TYPE_CART_ITEM=0
+const val VIEW_TYPE_PURCHASE_DETAILS=1
