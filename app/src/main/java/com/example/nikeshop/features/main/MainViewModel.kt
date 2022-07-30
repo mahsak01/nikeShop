@@ -2,6 +2,7 @@ package com.example.nikeshop.features.main
 
 import NikeSingleObserver
 import androidx.lifecycle.MutableLiveData
+import com.example.nikeshop.common.NikeCompletableObserver
 import com.example.nikeshop.common.NikeViewModel
 import com.example.nikeshop.common.SORT_LATEST
 import com.example.nikeshop.common.SORT_POPULAR
@@ -14,7 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class MainViewModel( productRepository: ProductRepository ,  bannerRepository: BannerRepository) :NikeViewModel() {
+class MainViewModel(val productRepository: ProductRepository ,  bannerRepository: BannerRepository) :NikeViewModel() {
 
     val latestProductLiveData= MutableLiveData<List<Product>>()
 //    val popularProductLiveData= MutableLiveData<List<Product>>()
@@ -54,6 +55,29 @@ class MainViewModel( productRepository: ProductRepository ,  bannerRepository: B
 
             })
 
+    }
+
+    fun addProductToFavorites(product: Product){
+        if (product.isFavorite)
+        productRepository.deleteFavoriteProducts(product)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object :NikeCompletableObserver(compositeDisposable){
+                override fun onComplete() {
+                    product.isFavorite=false
+                }
+
+            })
+        else
+            productRepository.addFavoriteProducts(product)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object :NikeCompletableObserver(compositeDisposable){
+                    override fun onComplete() {
+                        product.isFavorite=true
+                    }
+
+                })
     }
 
 }

@@ -87,7 +87,7 @@ addToCartButton.setOnClickListener {
      .observeOn(AndroidSchedulers.mainThread())
      .subscribe(object : NikeCompletableObserver(compositeDisposable){
          override fun onComplete() {
-             showSnackBar(R.string.successAddToCart.toString())
+             showSnackBar(getString(R.string.successAddToCart))
          }
 
      })

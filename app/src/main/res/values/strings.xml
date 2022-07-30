@@ -48,6 +48,10 @@
     <string name="signIn">ورود به حساب کاربری</string>
     <string name="signOut">خروج از حساب کاربری</string>
     <string name="guest">کاربر مهمان</string>
+    <string name="favorites_empty_state_message">هنوز محصولی به لیست علاقه مندی ها اضافه نکردی !!</string>
+    <string name="favorites_help_message">برای حذف محصول انگشت خود را روی آن نگه دارید</string>
+    <string name="orderHistory_orderId">شناسه سفارش</string>
+    <string name="orderHistory_payable">مبلغ</string>
 
     <string-array name="sortArray">
         <item>@string/sortLatest</item>

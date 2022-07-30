@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.nikeshop.R
 import com.example.nikeshop.common.NikeFragment
 import com.example.nikeshop.features.auth.AuthActivity
+import com.example.nikeshop.features.favorite.FavoriteProductsActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.koin.android.ext.android.inject
 
@@ -26,6 +27,14 @@ class ProfileFragment:NikeFragment() {
     override fun onResume() {
         super.onResume()
         checkAuthState()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        favoriteProductButton.setOnClickListener {
+            startActivity(Intent(requireContext(),FavoriteProductsActivity::class.java))
+        }
     }
 
     private fun checkAuthState(){

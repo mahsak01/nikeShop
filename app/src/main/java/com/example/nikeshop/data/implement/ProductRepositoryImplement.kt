@@ -12,18 +12,24 @@ class ProductRepositoryImplement(
     val productLocalDataSource: ProductDataSource
 ) : ProductRepository {
 
-    override fun getProducts(sort:Int): Single<List<Product>> = productRemoteDataSource.getProducts(sort)
+    override fun getProducts(sort: Int): Single<List<Product>> =
+        productLocalDataSource.getFavoriteProducts().flatMap { favoriteProducts ->
+            productRemoteDataSource.getProducts(sort).doOnSuccess {
+                val favoriteProductsId = favoriteProducts.map { it.id }
+                it.forEach { product ->
+                    if (favoriteProductsId.contains(product.id))
+                        product.isFavorite = true
+                }
+            }
+        }
 
 
-    override fun getFavoriteProducts(): Single<List<Product>> {
-        TODO("Not yet implemented")
-    }
+    override fun getFavoriteProducts(): Single<List<Product>> =
+        productLocalDataSource.getFavoriteProducts()
 
-    override fun addFavoriteProducts(): Completable {
-        TODO("Not yet implemented")
-    }
+    override fun addFavoriteProducts(product: Product): Completable =
+        productLocalDataSource.addFavoriteProducts(product)
 
-    override fun deleteFavoriteProducts(): Completable {
-        TODO("Not yet implemented")
-    }
+    override fun deleteFavoriteProducts(product: Product): Completable =
+        productLocalDataSource.deleteFavoriteProducts(product)
 }

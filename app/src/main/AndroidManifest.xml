@@ -18,9 +18,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".features.favorite.FavoriteProductsActivity"
+            android:exported="false" />
+        <activity
             android:name=".features.auth.AuthActivity"
             android:exported="false"
-            android:theme="@style/Theme.Nike.AuthTheme"/>
+            android:theme="@style/Theme.Nike.AuthTheme" />
         <activity
             android:name=".features.list.ProductListActivity"
             android:exported="false" />

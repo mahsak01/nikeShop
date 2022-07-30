@@ -3,7 +3,9 @@ package com.example.nikeshop
 import android.app.Application
 import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.room.Room
 import com.example.nikeshop.data.Repository.*
+import com.example.nikeshop.data.db.AppDatabase
 import com.example.nikeshop.data.implement.*
 import com.example.nikeshop.data.source.UserDataSource
 import com.example.nikeshop.data.source.local.ProductLocalDataSource
@@ -11,6 +13,7 @@ import com.example.nikeshop.data.source.local.UserLocalDataSource
 import com.example.nikeshop.data.source.remote.*
 import com.example.nikeshop.features.auth.AuthViewModel
 import com.example.nikeshop.features.cart.CartViewModel
+import com.example.nikeshop.features.favorite.FavoriteProductsViewModel
 import com.example.nikeshop.features.list.ProductListViewModel
 import com.example.nikeshop.features.main.MainViewModel
 import com.example.nikeshop.features.main.ProductListAdapter
@@ -42,10 +45,11 @@ class App : Application() {
         val myModules = module {
             single<ApiService> { createApiServiceInstance() }
             single<ImageLoadingService> { FrescoLoadingServiceImplement() }
+            single { Room.databaseBuilder(this@App,AppDatabase::class.java , "db_app").build() }
             factory<ProductRepository> {
                 ProductRepositoryImplement(
                     ProductRemoteDataSource(get()),
-                    ProductLocalDataSource()
+                    get<AppDatabase>().productDao()
                 )
             }
             factory { (viewType: Int) -> ProductListAdapter(viewType, get()) }
@@ -72,6 +76,7 @@ class App : Application() {
             viewModel { AuthViewModel(get()) }
             viewModel {CartViewModel(get())}
             viewModel {ProfileViewModel(get())}
+            viewModel {FavoriteProductsViewModel(get())}
 
 
         }

@@ -10,9 +10,9 @@ interface ProductRepository {
 
     fun getFavoriteProducts():Single<List<Product>>
 
-    fun addFavoriteProducts(): Completable
+    fun addFavoriteProducts(product: Product): Completable
 
-    fun deleteFavoriteProducts():Completable
+    fun deleteFavoriteProducts(product: Product):Completable
 
 
 }

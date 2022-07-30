@@ -19,12 +19,11 @@ import com.example.nikeshop.features.product.ProductDetailActivity
 import com.sevenlearn.nikestore.common.convertDpToPixel
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
-import org.koin.androidx.compose.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
-class MainFragment: NikeFragment(),ProductListAdapter.ProductOnClickListener {
+class MainFragment: NikeFragment(),ProductListAdapter.ProductEventOnClickListener {
     val mainViewModel:MainViewModel by viewModel()
     val productListAdapter:ProductListAdapter by inject{parametersOf(VIEW_TYPE_ROUND)}
 
@@ -83,5 +82,9 @@ class MainFragment: NikeFragment(),ProductListAdapter.ProductOnClickListener {
         startActivity(Intent(requireContext(),ProductDetailActivity::class.java).apply {
             putExtra(EXTRA_KEY_DATA,product)
         })
+    }
+
+    override fun onFavoriteButtonClick(product: Product) {
+        mainViewModel.addProductToFavorites(product)
     }
 }

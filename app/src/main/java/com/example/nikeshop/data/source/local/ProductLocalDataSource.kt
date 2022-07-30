@@ -1,25 +1,23 @@
 package com.example.nikeshop.data.source.local
 
+import androidx.room.*
 import com.example.nikeshop.data.model.Product
 import com.example.nikeshop.data.source.ProductDataSource
 import io.reactivex.Completable
 import io.reactivex.Single
 
-
-class ProductLocalDataSource: ProductDataSource {
+@Dao
+interface ProductLocalDataSource: ProductDataSource {
     override fun getProducts(sort:Int): Single<List<Product>> {
         TODO("Not yet implemented")
     }
 
-    override fun getFavoriteProducts(): Single<List<Product>> {
-        TODO("Not yet implemented")
-    }
+    @Query("SELECT * from products")
+    override fun getFavoriteProducts(): Single<List<Product>>
 
-    override fun addFavoriteProducts(): Completable {
-        TODO("Not yet implemented")
-    }
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    override fun addFavoriteProducts(product: Product): Completable
 
-    override fun deleteFavoriteProducts(): Completable {
-        TODO("Not yet implemented")
-    }
+    @Delete
+    override fun deleteFavoriteProducts(product: Product): Completable
 }

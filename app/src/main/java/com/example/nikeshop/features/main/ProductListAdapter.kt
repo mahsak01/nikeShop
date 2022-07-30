@@ -4,7 +4,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewOverlay
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nikeshop.R
@@ -16,11 +16,12 @@ import com.example.nikeshop.service.http.ImageLoadingService
 import com.example.nikeshop.view.NikeImageView
 import com.sevenlearn.nikestore.common.formatPrice
 import com.sevenlearn.nikestore.common.implementSpringAnimationTrait
+import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductListAdapter(var viewType:Int = VIEW_TYPE_ROUND, val imageLoadingService: ImageLoadingService) :
     RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 
-    var productOnClickListener:ProductOnClickListener?=null
+    var productOnClickListener:ProductEventOnClickListener?=null
 
     var productList=ArrayList<Product>()
     set(value) {
@@ -34,6 +35,7 @@ class ProductListAdapter(var viewType:Int = VIEW_TYPE_ROUND, val imageLoadingSer
         val previousPriceTextView: TextView = itemView.findViewById(R.id.previousPriceTextView)
         val productImageView: NikeImageView = itemView.findViewById(R.id.productImageView)
         val titleTextView: TextView = itemView.findViewById(R.id.productTitleTextView)
+        val favoriteButton: ImageView = itemView.findViewById(R.id.favoriteButton)
 
         fun bindProduct(product: Product) {
             imageLoadingService.load(productImageView,product.image)
@@ -45,6 +47,20 @@ class ProductListAdapter(var viewType:Int = VIEW_TYPE_ROUND, val imageLoadingSer
             itemView.setOnClickListener{
                 productOnClickListener?.onProductClick(product)
             }
+            if (product.isFavorite)
+                favoriteButton.setImageResource(R.drawable.ic_favorite_fill)
+            else
+                favoriteButton.setImageResource(R.drawable.ic_favorites)
+
+
+            favoriteButton.setOnClickListener {
+                productOnClickListener?.onFavoriteButtonClick(product)
+              product.isFavorite=!product.isFavorite
+
+                notifyItemChanged(adapterPosition)
+
+            }
+
         }
     }
 
@@ -67,7 +83,9 @@ class ProductListAdapter(var viewType:Int = VIEW_TYPE_ROUND, val imageLoadingSer
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindProduct(productList[position])
 
-    interface ProductOnClickListener{
+    interface ProductEventOnClickListener{
         fun onProductClick(product: Product)
+        fun onFavoriteButtonClick(product: Product)
+
     }
     }
